@@ -1,0 +1,13 @@
+diff -ur a/sdk/android/api/org/webrtc/HardwareVideoEncoderFactory.java b/sdk/android/api/org/webrtc/HardwareVideoEncoderFactory.java
+--- a/sdk/android/api/org/webrtc/HardwareVideoEncoderFactory.java	2021-11-12 11:42:28.000000000 +0900
++++ b/sdk/android/api/org/webrtc/HardwareVideoEncoderFactory.java	2021-11-12 17:07:35.646922225 +0900
+@@ -234,6 +234,9 @@
+     String name = info.getName();
+     // QCOM H264 encoder is supported in KITKAT or later.
+     return (name.startsWith(QCOM_PREFIX) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
++        // Enable MediaTek H264 encoder in LOLLIPOP or later anyway.
++        || (name.startsWith("OMX.MTK.")
++               && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+         // Exynos H264 encoder is supported in LOLLIPOP or later.
+         || (name.startsWith(EXYNOS_PREFIX)
+                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP);
